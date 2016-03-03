@@ -1,9 +1,8 @@
 package com.sys1yagi.kmockito
 
-
 import com.taroid.knit.should
 import org.junit.Test
-import com.sys1yagi.kmockito.KMockito.called
+import org.mockito.Mockito.times
 
 class KMockitoTest {
 
@@ -14,18 +13,18 @@ class KMockitoTest {
     @Test
     fun mockTest() {
         var item = Item::class.java.mock()
-
-        called(item.length()).thenReturn(10)
+        item.length().invoked.thenReturn(10)
 
         item.length().should be 10
+        item.verify().length()
     }
 
     @Test
     fun spyTest() {
         var item = Item(10).spy()
-
-        called(item.length()).thenReturn(11)
+        item.length().invoked.thenReturn(11)
 
         item.length().should be 11
+        item.verify(times(1)).length()
     }
 }
