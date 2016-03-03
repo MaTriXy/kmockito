@@ -17,9 +17,15 @@ version VERSION
 
 repositories {
     jcenter()
+    maven {
+        url 'http://dl.bintray.com/ngsw-taro/maven'
+    }
 }
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
-    compile 'junit:junit:4.12'
+    compile 'org.mockito:mockito-all:1.10.19'
+
+    testCompile 'com.taroid.knit:knit:0.1.2'
+    testCompile 'junit:junit:4.12'
 }
