@@ -1,22 +1,12 @@
 package com.sys1yagi.kmockito
 
+import com.sys1yagi.kmockito.fortest.Item
+import com.sys1yagi.kmockito.fortest.Name
 import com.taroid.knit.should
 import org.junit.Test
-import org.mockito.Mockito.anyInt
-import org.mockito.Mockito.times
+import org.mockito.Mockito.*
 
 class KMockitoTest {
-
-    open class Item(private var length: Int) {
-        open fun length(): Int = length
-
-        open fun increment(): Unit {
-            length++
-        }
-
-        open fun plus(value: Int) = length() + value
-    }
-
     @Test
     fun mockTest() {
         var item = Item::class.java.mock()
@@ -28,16 +18,15 @@ class KMockitoTest {
 
     @Test
     fun spyTest() {
-        var item = Item(10).spy()
-        item.length().invoked.thenReturn(11)
-
+        var item = Item(Name("name"), 10).spy()
+        item.doReturn(11).length()
         item.length().should be 11
         item.verify(times(1)).length()
     }
 
     @Test
     fun doNothingTest() {
-        var item = Item(10).spy()
+        var item = Item(Name("name"), 10).spy()
         item.doNothing.increment()
         item.increment()
 
