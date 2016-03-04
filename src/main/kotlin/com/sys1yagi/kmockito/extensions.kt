@@ -14,3 +14,17 @@ fun <T> T.invoked(): OngoingStubbing<T> {
 
 val <T> T.invoked: OngoingStubbing<T>
     get() = invoked()
+
+fun <T> T.doNothing(): T {
+    return Mockito.doNothing().`when`(this)
+}
+
+val <T> T.doNothing: T
+    get() = doNothing()
+
+fun <T> T.doCallRealMethod(): T {
+    return Mockito.doCallRealMethod().`when`(this)
+}
+
+val <T> T.doCallRealMethod: T
+    get() = doCallRealMethod()
