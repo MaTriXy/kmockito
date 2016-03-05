@@ -27,7 +27,6 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
     compile 'org.mockito:mockito-all:1.10.19'
 
-    testCompile 'com.taroid.knit:knit:0.1.2'
     testCompile 'junit:junit:4.12'
 }
 
