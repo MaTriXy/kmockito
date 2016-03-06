@@ -18,27 +18,21 @@ hmm... OK. I'll add extensions for Kotlin.
 __before__
 
 ```java
-@Test
-fun mockTest() {
-  var item = mock(Item::class.java)
-  `when`(item.length()).thenReturn(10)
+var item = mock(Item::class.java)
+`when`(item.length()).thenReturn(10)
 
-  assertThat(item.length(), `is`(10))
-  verify(item).length()
-}
+assertThat(item.length(), `is`(10))
+verify(item).length()
 ```
 
 __after__
 
 ```java
-@Test
-fun mockTest() {
-  var item = Item::class.java.mock()
-  item.length().invoked.thenReturn(10)
+var item = Item::class.java.mock()
+item.length().invoked.thenReturn(10)
 
-  assertThat(item.length(), `is`(10))
-  item.verify().length()
-}
+assertThat(item.length(), `is`(10))
+item.verify().length()
 ```
 
 I recommend that you also use [knit](https://github.com/ntaro/knit). It is JUnit API for Kotlin.
@@ -48,30 +42,28 @@ I recommend that you also use [knit](https://github.com/ntaro/knit). It is JUnit
 __before__
 
 ```java
-@Test
-fun spyTest() {
-  var item = spy(Item(10))
-  doReturn(11).`when`(item).length()
+var item = spy(Item(10))
+doReturn(11).`when`(item).length()
 
-  assertThat(item.length(), `is`(11))
-  verify(item, times(1)).length()
-}
+assertThat(item.length(), `is`(11))
+verify(item, times(1)).length()
 ```
 
 __after__
 
 ```java
-@Test
-fun spyTest() {
-  var item = Item(10).spy()
-  item.doReturn(11).length()
+var item = Item(10).spy()
+item.doReturn(11).length()
 
-  assertThat(item.length(), `is`(11))
-  item.verify(times(1)).length()
-}
+assertThat(item.length(), `is`(11))
+item.verify(times(1)).length()
 ```
 
-### Installation
+## Answer
+
+TODO
+
+## Installation
 
 This library is distributed by [JitPack](https://jitpack.io/). Add dependencies your build.gradle
 
