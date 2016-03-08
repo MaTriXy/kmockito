@@ -29,7 +29,6 @@ dependencies {
     compile 'org.mockito:mockito-core:2.0.43-beta'
 
     testCompile 'junit:junit:4.12'
-    compile "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
 }
 
 apply from: "${project.rootDir}/gradle/version/version.gradle"

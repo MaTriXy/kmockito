@@ -9,4 +9,8 @@ open class Item(open var name: Name, open var length: Int) {
     }
 
     open fun plus(value: Int) = length() + value
+
+    open fun plusAsync(value: Int, callback: (Int)->Unit) {
+        callback.invoke(plus(value))
+    }
 }
