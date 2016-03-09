@@ -61,7 +61,33 @@ item.verify(times(1)).length()
 
 ## Answer
 
-TODO
+__before__
+
+```java
+model.someMethod(anyInt(), anyString(), any(), any())
+    .invoked
+    .thenAnswer {
+      val a = it.arguments[0] as Int
+      val b = it.arguments[1] as String
+      val c = it.arguments[2] as Item
+      val d = it.arguments[3] as Name
+
+      // do something
+    }
+```
+
+__after__
+
+```java
+model.someMethod(anyInt(), anyString(), any(), any())
+    .invoked
+    .thenAnswer {
+      val (a, b, c, d) = it.arguments4<Int, String, Item, Name>()
+
+      // do something
+    }
+```
+
 
 ## Installation
 
@@ -81,7 +107,7 @@ allprojects {
  Add the dependency
 
 ```groovy
-compile 'com.github.sys1yagi:kmockito:0.0.1'
+compile 'com.github.sys1yagi:kmockito:0.1.0'
 ```
 
 ## Development
