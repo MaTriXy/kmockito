@@ -46,6 +46,14 @@ fun <T> T.doCallRealMethod(): T {
 val <T> T.doCallRealMethod: T
     get() = doCallRealMethod()
 
+fun <T> T.doAnswer(answer: Answer<*>): T {
+    return Mockito.doAnswer(answer).`when`(this)
+}
+
+fun <T> T.doAnswer(answer: (InvocationOnMock) -> Any): T {
+    return Mockito.doAnswer(answer).`when`(this)
+}
+
 // spy
 
 inline fun <reified T> T.spy(): T = Mockito.spy(this)

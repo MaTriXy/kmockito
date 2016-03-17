@@ -80,4 +80,16 @@ class KMockitoTest {
         val result = model.multipleArgumentsMethod(11, "test", Item(NameHolder("a"), 12), NameHolder("name"))
         assertThat(result, `is`(11))
     }
+
+    @Test
+    fun doAnswerTest() {
+        var item: Item = mock()
+
+        item.doAnswer {
+            10
+        }.length()
+
+        assertThat(item.length(), `is`(10))
+    }
+
 }
