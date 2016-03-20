@@ -1,6 +1,7 @@
 # kmockito
 
 [![Circle CI](https://circleci.com/gh/sys1yagi/kmockito.svg?style=svg)](https://circleci.com/gh/sys1yagi/kmockito)
+[![Release](https://jitpack.io/v/sys1yagi/kmockito.svg)](https://jitpack.io/sys1yagi/kmockito)
 
 Mockito for Kotlin.
 
