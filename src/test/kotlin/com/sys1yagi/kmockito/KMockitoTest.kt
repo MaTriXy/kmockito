@@ -58,6 +58,31 @@ class KMockitoTest {
     }
 
     @Test
+    fun answerArgumentTest() {
+        open class Model {
+            open fun multipleArgumentsMethod(a: Int, b: String, c: Item, d: NameHolder): Int {
+                return 10
+            }
+        }
+
+        val model: Model = mock()
+        model.multipleArgumentsMethod(anyInt(), anyString(), any(), any()).invoked
+                .thenAnswer {
+                    val b = it.getArgumentAt<String>(1)
+                    val item = it.getArgumentAt<Item>(2)
+                    val nameHolder = it.getArgumentAt<NameHolder>(3)
+
+                    assertThat(b, `is`("test"))
+                    assertThat(item.length, `is`(12))
+                    assertThat(nameHolder.name, `is`("name"))
+
+                    return@thenAnswer it.getArgumentAt(0)
+                }
+        val result = model.multipleArgumentsMethod(11, "test", Item(NameHolder("a"), 12), NameHolder("name"))
+        assertThat(result, `is`(11))
+    }
+
+    @Test
     fun answerArgumentsTest() {
         open class Model {
             open fun multipleArgumentsMethod(a: Int, b: String, c: Item, d: NameHolder): Int {

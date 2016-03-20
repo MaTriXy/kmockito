@@ -56,8 +56,8 @@ fun <T> T.doAnswer(answer: (InvocationOnMock) -> Any): T {
 
 // spy
 
-inline fun <reified T> T.spy(): T = Mockito.spy(this)
-inline fun <reified T> T.doReturn(value: Any): T {
+fun <T> T.spy(): T = Mockito.spy(this)
+fun <T> T.doReturn(value: Any): T {
     return Mockito.doReturn(value).`when`(this)
 }
 
@@ -81,6 +81,7 @@ private fun <T> Class<T>.defaultMock(): T {
 
 // answer
 
+inline fun <reified T : Any> InvocationOnMock.getArgumentAt(index: Int): T = getArgumentAt(index, T::class.java)
 inline fun <reified A> InvocationOnMock.arguments(): A = arguments[0] as A
 inline fun <reified A, reified B> InvocationOnMock.arguments2(): Pair<A, B> = Pair<A, B>(arguments[0] as A, arguments[1] as B)
 inline fun <reified A, reified B, reified C> InvocationOnMock.arguments3(): Triple<A, B, C> = Triple<A, B, C>(arguments[0] as A, arguments[1] as B, arguments[2] as C)
@@ -90,3 +91,4 @@ inline fun <reified A, reified B, reified C, reified D, reified E> InvocationOnM
 // DSL
 
 fun <T> Class<T>.deepMock(): T = Mockito.mock(this, Mockito.RETURNS_DEEP_STUBS)
+
