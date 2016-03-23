@@ -73,10 +73,10 @@ private fun <T> Class<T>.defaultMock(): T {
 
 inline fun <reified T : Any> InvocationOnMock.getArgumentAt(index: Int): T = getArgumentAt(index, T::class.java)
 inline fun <reified A> InvocationOnMock.arguments(): A = arguments[0] as A
-inline fun <reified A, reified B> InvocationOnMock.arguments2(): Pair<A, B> = Pair<A, B>(arguments[0] as A, arguments[1] as B)
-inline fun <reified A, reified B, reified C> InvocationOnMock.arguments3(): Triple<A, B, C> = Triple<A, B, C>(arguments[0] as A, arguments[1] as B, arguments[2] as C)
-inline fun <reified A, reified B, reified C, reified D> InvocationOnMock.arguments4(): Quadruple<A, B, C, D> = Quadruple<A, B, C, D>(arguments[0] as A, arguments[1] as B, arguments[2] as C, arguments[3] as D)
-inline fun <reified A, reified B, reified C, reified D, reified E> InvocationOnMock.arguments5(): Quintuple<A, B, C, D, E> = Quintuple<A, B, C, D, E>(arguments[0] as A, arguments[1] as B, arguments[2] as C, arguments[3] as D, arguments[4] as E)
+inline fun <reified A, reified B> InvocationOnMock.arguments2() = Pair(arguments[0] as A, arguments[1] as B)
+inline fun <reified A, reified B, reified C> InvocationOnMock.arguments3() = Triple(arguments[0] as A, arguments[1] as B, arguments[2] as C)
+inline fun <reified A, reified B, reified C, reified D> InvocationOnMock.arguments4() = Quadruple(arguments[0] as A, arguments[1] as B, arguments[2] as C, arguments[3] as D)
+inline fun <reified A, reified B, reified C, reified D, reified E> InvocationOnMock.arguments5() = Quintuple(arguments[0] as A, arguments[1] as B, arguments[2] as C, arguments[3] as D, arguments[4] as E)
 
 // DSL
 
