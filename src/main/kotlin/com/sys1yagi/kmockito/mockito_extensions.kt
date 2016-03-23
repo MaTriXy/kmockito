@@ -25,34 +25,25 @@ inline fun <reified T : Any> mock(defaultAnswer: Answer<Any>) = Mockito.mock(T::
 
 fun <T> T.verify(): T = Mockito.verify(this)
 fun <T> T.verify(mode: VerificationMode): T = Mockito.verify(this, mode)
-fun <T> T.invoked(): OngoingStubbing<T> {
-    return Mockito.`when`(this)
-}
+fun <T> T.invoked() = Mockito.`when`(this)
 
 val <T> T.invoked: OngoingStubbing<T>
     get() = invoked()
 
-fun <T> T.doNothing(): T {
-    return Mockito.doNothing().`when`(this)
-}
+fun <T> T.doNothing() = Mockito.doNothing().`when`(this)
 
 val <T> T.doNothing: T
     get() = doNothing()
 
-fun <T> T.doCallRealMethod(): T {
-    return Mockito.doCallRealMethod().`when`(this)
-}
+fun <T> T.doCallRealMethod() = Mockito.doCallRealMethod().`when`(this)
+
 
 val <T> T.doCallRealMethod: T
     get() = doCallRealMethod()
 
-fun <T> T.doAnswer(answer: Answer<*>): T {
-    return Mockito.doAnswer(answer).`when`(this)
-}
+fun <T> T.doAnswer(answer: Answer<*>) = Mockito.doAnswer(answer).`when`(this)
 
-fun <T> T.doAnswer(answer: (InvocationOnMock) -> Any): T {
-    return Mockito.doAnswer(answer).`when`(this)
-}
+fun <T> T.doAnswer(answer: (InvocationOnMock) -> Any) = Mockito.doAnswer(answer).`when`(this)
 
 // spy
 
@@ -64,12 +55,11 @@ fun <T> T.doReturn(value: Any): T {
 // matcher
 
 inline fun <reified T : Any> any() = Mockito.any(T::class.java) ?: instance(T::class)
-fun <T : Any> instance(kClass: KClass<T>): T {
-    return when {
-        kClass.mockable() -> kClass.java.defaultMock()
-        else -> kClass.constructors.sortedBy { it.parameters.size }.first().call()
-    }
-}
+fun <T : Any> instance(kClass: KClass<T>) =
+        when {
+            kClass.mockable() -> kClass.java.defaultMock()
+            else -> kClass.constructors.sortedBy { it.parameters.size }.first().call()
+        }
 
 private fun KClass<*>.mockable(): Boolean = !Modifier.isFinal(java.modifiers)
 private fun <T> Class<T>.defaultMock(): T {
