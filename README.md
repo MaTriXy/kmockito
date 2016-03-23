@@ -29,7 +29,7 @@ verify(item).length()
 __after__
 
 ```java
-var item = Item::class.java.mock()
+var item: Item = mock()
 item.length().invoked.thenReturn(10)
 
 assertThat(item.length(), `is`(10))
