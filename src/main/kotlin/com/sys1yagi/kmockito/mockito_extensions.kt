@@ -66,12 +66,12 @@ private fun <T> Class<T>.defaultMock(): T {
     val mockSettingsImpl = MockSettingsImpl<T>()
     mockSettingsImpl.defaultAnswer(Answers.RETURNS_DEFAULTS)
     val mockCreationSettings = mockSettingsImpl.confirm(this)
-    return MockUtil().createMock(mockCreationSettings)
+    return MockUtil.createMock(mockCreationSettings)
 }
 
 // answer
 
-inline fun <reified T : Any> InvocationOnMock.getArgumentAt(index: Int): T = getArgumentAt(index, T::class.java)
+inline fun <reified T : Any> InvocationOnMock.getArgumentAt(index: Int): T = getArgument(index)
 inline fun <reified A> InvocationOnMock.arguments(): A = arguments[0] as A
 inline fun <reified A, reified B> InvocationOnMock.arguments2() = Pair(arguments[0] as A, arguments[1] as B)
 inline fun <reified A, reified B, reified C> InvocationOnMock.arguments3() = Triple(arguments[0] as A, arguments[1] as B, arguments[2] as C)

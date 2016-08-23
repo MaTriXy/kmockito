@@ -26,7 +26,7 @@ repositories {
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
     compile "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
-    compile 'org.mockito:mockito-core:2.0.44-beta'
+    compile 'org.mockito:mockito-core:2.0.111-beta'
 
     testCompile 'junit:junit:4.12'
 }
