@@ -108,7 +108,7 @@ allprojects {
  Add the dependency
 
 ```groovy
-testCompile 'com.github.sys1yagi:kmockito:0.1.1'
+testCompile 'com.github.sys1yagi:kmockito:0.1.2'
 ```
 
 ## Development
