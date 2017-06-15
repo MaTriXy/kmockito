@@ -1,3 +1,7 @@
+# DEPRECATED
+
+use https://github.com/nhaarman/mockito-kotlin
+
 # kmockito
 
 [![Circle CI](https://circleci.com/gh/sys1yagi/kmockito.svg?style=svg)](https://circleci.com/gh/sys1yagi/kmockito)
